@@ -1,8 +1,8 @@
 <Window xmlns="https://github.com/avaloniaui"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:vm="using:Hacky_Carky.ViewModels"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:Hacky_Carky.ViewModels"
     x:Class="Hacky_Carky.Views.MainWindow"
     x:DataType="vm:MainWindowViewModel"
     mc:Ignorable="d"
@@ -11,14 +11,26 @@
     Icon="/Assets/avalonia-logo.ico"
     Title="Hacky_Carky">
 
-	<Design.DataContext>
-		<!--
+    <Design.DataContext>
+        <!--
             This only sets the DataContext for the previewer in an IDE,
             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs)
         -->
-		<vm:MainWindowViewModel />
-	</Design.DataContext>
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
 
-	<TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Greeting}" />
+    <StackPanel Margin="100" VerticalAlignment="Center" HorizontalAlignment="Stretch">
 
+        <SelectableTextBlock Text="{Binding TransliteratedText}" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+        <Separator Margin="15" />
+
+        <TextBox AcceptsReturn="True"
+            Text="{Binding TextBoxText}"
+            TextWrapping="Wrap"
+            Watermark="Insert Text..."
+            VerticalAlignment="Stretch"
+            HorizontalAlignment="Stretch" />
+
+    </StackPanel>
 </Window>

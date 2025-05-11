@@ -1,6 +1,16 @@
-﻿namespace Hacky_Carky.ViewModels;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using Hacky_Carky.Models;
+
+namespace Hacky_Carky.ViewModels;
 
 public partial class MainWindowViewModel : ViewModelBase
 {
-    public string Greeting { get; } = "Welcome to Avalonia!";
+    [ObservableProperty]
+    private string? _textBoxText;
+
+    [ObservableProperty]
+    private string? _transliteratedText;
+
+    partial void OnTextBoxTextChanged(string? value)
+        => TransliteratedText = CzechTransliterator.Transliterate(value ?? string.Empty);
 }
